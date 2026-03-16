@@ -18,6 +18,7 @@ app.use(express.static('public'))
 // Stel Liquid in als 'view engine'
 const engine = new Liquid()
 app.engine('liquid', engine.express())
+app.set('view engine', 'liquid')
 
 // Stel de map met Liquid templates in
 // Let op: de browser kan deze bestanden niet rechtstreeks laden (zoals voorheen met HTML bestanden)
@@ -25,6 +26,31 @@ app.set('views', './views')
 
 
 console.log('Let op: Er zijn nog geen routes. Voeg hier dus eerst jouw GET en POST routes toe.')
+
+// homepage
+app.get('/', (request, response) => {
+  response.render('index') 
+  })
+
+// detailpagina instrument
+app.get('/instrument', (request, response) => {
+  response.render('instrument')
+})
+
+// instrument toevoegen
+app.get('/instrument/toevoegen', (request, response) => {
+  response.render('instrument-toevoegen')
+})
+
+// instrument innemen
+app.get('/instrument/innemen', (request, response) => {
+  response.render('instrument-innemen')
+})
+
+// instrument uitlenen
+app.get('/instrument/uitlenen', (request, response) => {
+  response.render('instrument-uitlenen')
+})
 
 /*
 // Zie https://expressjs.com/en/5x/api.html#app.get.method over app.get()
