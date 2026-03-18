@@ -5,6 +5,10 @@ import express from 'express'
 // Importeer de Liquid package (ook als dependency via npm geïnstalleerd)
 import { Liquid } from 'liquidjs';
 
+const apiResponse = await fetch('https://fdnd-agency.directus.app/items/preludefonds_instruments')
+const apiResponseJSON = await apiResponse.json()
+console.log(apiResponseJSON)
+
 // Maak een nieuwe Express applicatie aan, waarin we de server configureren
 const app = express()
 
@@ -29,8 +33,11 @@ console.log('Let op: Er zijn nog geen routes. Voeg hier dus eerst jouw GET en PO
 
 // homepage
 app.get('/', (request, response) => {
-  response.render('index') 
+  response.render('index', {
+    instruments: apiResponseJSON.data
+
   })
+})
 
 // detailpagina instrument
 app.get('/instrument', (request, response) => {
