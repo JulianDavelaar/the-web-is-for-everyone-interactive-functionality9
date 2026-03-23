@@ -1,5 +1,29 @@
 {% render 'partials/header.liquid' %}
 
+<main class="pagina">
+  <section class="lijst">
+    <div class="kop">
+      <p>Instrument</p>
+      <p>Status</p>
+    </div>
 
+    <ul>
+      {% for instrument in instruments %}
+        <li class="rij">
+          <p>{{ instrument.name }}</p>
+          <p>
+            {% if instrument.status.name %}
+              {{ instrument.status.name }}
+            {% elsif instrument.status %}
+              {{ instrument.status }}
+            {% else %}
+              Beschikbaar
+            {% endif %}
+          </p>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+</main>
 
 {% render 'partials/footer.liquid'%}
