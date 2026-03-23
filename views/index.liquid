@@ -10,16 +10,18 @@
     <ul>
       {% for instrument in instruments %}
         <li class="rij">
-          <p>{{ instrument.name }}</p>
-          <p>
-            {% if instrument.status.name %}
-              {{ instrument.status.name }}
-            {% elsif instrument.status %}
-              {{ instrument.status }}
-            {% else %}
-              Beschikbaar
-            {% endif %}
-          </p>
+          <a href="/instrument/{{ forloop.index0 }}" class="instrument-link">
+            <p>{{ instrument.name }}</p>
+            <p>
+              {% if instrument.status.name %}
+                {{ instrument.status.name }}
+              {% elsif instrument.status %}
+                {{ instrument.status }}
+              {% else %}
+                Beschikbaar
+              {% endif %}
+            </p>
+          </a>
         </li>
       {% endfor %}
     </ul>
