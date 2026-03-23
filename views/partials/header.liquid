@@ -4,23 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles/styles.css">
-    
     <title>{{ title }}</title>
-</head>
+  </head>
 
-  <body>  
-
+  <body>
     <header class="header">
-        
-            <!-- logo -->
-            <a href="/" class="logo">
-            {% render 'partials/cool.logo.svg' %}
-            </a>
-            
+        <a href="/" class="logo">
+          {% render 'partials/cool.logo.svg' %}
+        </a>
+
         <nav class="nav">
-        <!-- navigatie -->
-            <a href="/instrument/uitlenen" class="button">Uitlenen</a>
-            <a href="/instrument/innemen" class="button">Innemen</a>
-            <a href="/instrument/toevoegen" class="button">Toevoegen</a>
+          <a href="/instrument/uitlenen" class="link">Uitlenen</a>
+          <span>|</span>
+          <a href="/instrument/innemen" class="link">Innemen</a>
+          <span>|</span>
+          <a href="/instrument/toevoegen" class="link">Toevoegen</a>
         </nav>
+
+        <form class="zoeken" action="/" method="get">
+          <input id="zoeken" name="zoeken" type="zoeken" placeholder="Instrument Zoeken">
+          <button type="submit">Zoek</button>
+        </form>
     </header>
