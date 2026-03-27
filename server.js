@@ -35,13 +35,12 @@ console.log('Let op: Er zijn nog geen routes. Voeg hier dus eerst jouw GET en PO
 app.get('/', (request, response) => {
   response.render('index', {
     instruments: apiResponseJSON.data
-
   })
 })
 
 // detailpagina instrument
-app.get('/instrument', (request, response) => {
-  response.render('instrument')
+app.get('/instrument/:id', (request, response) => {
+  response.render('instrument-detail')
 })
 
 // instrument toevoegen
@@ -111,4 +110,22 @@ app.set('port', process.env.PORT || 8000)
 app.listen(app.get('port'), function () {
   // Toon een bericht in de console
   console.log(`Daarna kun je via http://localhost:${app.get('port')}/ jouw interactieve website bekijken.\n\nThe Web is for Everyone. Maak mooie dingen 🙂`)
+})
+
+
+app.post('/instrument/:id/uitlenen', async function(request, response){
+  const id = request.params.id
+  await fetch('https://fdnd-agency.directus.app/items/preludefonds_instruments/${id}', {
+    method: 'PATCH',
+    body: JSON.stringify({
+    status: 'uitgeleend'
+    }),
+
+    headers: {
+      'Content-Type': 'application/json;charset=UTF-8'
+    }
+  });
+
+  // Stuur de browser daarna weer naar de homepage
+  response.redirect(303, '/')
 })
