@@ -5,9 +5,12 @@ import express from 'express'
 // Importeer de Liquid package (ook als dependency via npm geïnstalleerd)
 import { Liquid } from 'liquidjs';
 
-const apiResponse = await fetch('https://fdnd-agency.directus.app/items/preludefonds_instruments')
-const apiResponseJSON = await apiResponse.json()
-console.log(apiResponseJSON)
+async function haalInstrumentenOp() {
+  const apiResponse = await fetch('https://fdnd-agency.directus.app/items/preludefonds_instruments')
+  const apiResponseJSON = await apiResponse.json()
+  return apiResponseJSON.data
+}
+
 
 // Maak een nieuwe Express applicatie aan, waarin we de server configureren
 const app = express()
@@ -33,19 +36,32 @@ console.log('Let op: Er zijn nog geen routes. Voeg hier dus eerst jouw GET en PO
 
 // homepage
 app.get('/', async (request, response) => {
-  response.render('index', {
-    instruments: apiResponseJSON.data
+   const instruments = await haalInstrumentenOp()
+
+   response.render('index', {
+   instruments: instruments
   })
 })
 
 // detailpagina instrument
-app.get('/instrument/:id', (request, response) => {
-  const instrument = apiResponseJSON.data[request.params.id]
+app.get('/instrument/:id', async (request, response) => {
+  const id = Number(request.params.id)
+  const instruments = await haalInstrumentenOp()
+
+  const instrument = instruments.find(function(item) {
+    return item.id === id
+  })
+
+  if (!instrument) {
+    response.status(404).send('Instrument niet gevonden')
+    return
+  }
 
   response.render('instrument-detail', {
     instrument
   })
 })
+
 
 // instrument toevoegen
 app.get('/instrument/toevoegen', (request, response) => {
@@ -60,7 +76,7 @@ app.get('/instrument/innemen', (request, response) => {
 // instrument uitlenen
 app.get('/instrument/uitlenen', async (request, response) => {
   response.render('instrument-detail', {
-    instruments: apiResponseJSON.data
+    instruments: instruments
   })
 })
 
