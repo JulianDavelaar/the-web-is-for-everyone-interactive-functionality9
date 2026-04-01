@@ -32,7 +32,7 @@ app.set('views', './views')
 console.log('Let op: Er zijn nog geen routes. Voeg hier dus eerst jouw GET en POST routes toe.')
 
 // homepage
-app.get('/', (request, response) => {
+app.get('/', async (request, response) => {
   response.render('index', {
     instruments: apiResponseJSON.data
   })
@@ -58,7 +58,7 @@ app.get('/instrument/innemen', (request, response) => {
 })
 
 // instrument uitlenen
-app.get('/instrument/uitlenen', (request, response) => {
+app.get('/instrument/uitlenen', async (request, response) => {
   response.render('instrument-detail', {
     instruments: apiResponseJSON.data
   })
@@ -121,7 +121,7 @@ app.listen(app.get('port'), function () {
 
 app.post('/instrument/:id/uitlenen', async function(request, response){
   const id = request.params.id
-  await fetch('https://fdnd-agency.directus.app/items/preludefonds_instruments/${id}', {
+  await fetch(`https://fdnd-agency.directus.app/items/preludefonds_instruments/${id}`, {
     method: 'PATCH',
     body: JSON.stringify({
     status: 'uitgeleend'

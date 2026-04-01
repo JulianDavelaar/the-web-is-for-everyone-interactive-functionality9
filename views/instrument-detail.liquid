@@ -2,11 +2,11 @@
 
 <main class="pagina detail-pagina">
   <section class="detail">
-    {% if instrument.afbeelding %}
-      <img src="{{ instrument.afbeelding }}" alt="{{ instrument.name }}" class="detail-foto">
-    {% else %}
+    {% comment %} {% if instrument.photo %} {% endcomment %}
+      <img src="{{ instrument.photo }}" alt="{{ instrument.name }}" class="detail-foto">
+    {% comment %} {% else %}
       <div class="detail-foto leeg"></div>
-    {% endif %}
+    {% endif %} {% endcomment %}
 
     <div class="detail-info">
       <h1>{{ instrument.name }}</h1>
@@ -36,9 +36,7 @@
     </section>
 
     <div class="detail-acties">
-        <form action="/instrument/:slug" method="POST">
           <button type="submit">Uitlenen</button>
-        </form>
     </div>
   </form>
 </main>
