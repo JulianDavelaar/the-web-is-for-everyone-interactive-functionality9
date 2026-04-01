@@ -2,15 +2,24 @@
 
 <main class="pagina detail-pagina">
   <section class="detail">
-    {% if afbeelding %}
-      <img src="{{ afbeelding }}" alt="{{ instrument.name }}" class="detail-foto">
+    {% if instrument.afbeelding %}
+      <img src="{{ instrument.afbeelding }}" alt="{{ instrument.name }}" class="detail-foto">
     {% else %}
       <div class="detail-foto leeg"></div>
     {% endif %}
 
     <div class="detail-info">
       <h1>{{ instrument.name }}</h1>
-      <p>Status: {{ status }}</p>
+      <p>
+        Status:
+        {% if instrument.status.name %}
+          {{ instrument.status.name }}
+        {% elsif instrument.status %}
+          {{ instrument.status }}
+        {% else %}
+          Beschikbaar
+        {% endif %}
+      </p>
     </div>
   </section>
 
@@ -27,11 +36,9 @@
     </section>
 
     <div class="detail-acties">
-
         <form action="/instrument/:slug" method="POST">
           <button type="submit">Uitlenen</button>
         </form>
-
     </div>
   </form>
 </main>

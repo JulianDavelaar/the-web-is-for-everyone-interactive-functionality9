@@ -40,7 +40,11 @@ app.get('/', (request, response) => {
 
 // detailpagina instrument
 app.get('/instrument/:id', (request, response) => {
-  response.render('instrument-detail')
+  const instrument = apiResponseJSON.data[request.params.id]
+
+  response.render('instrument-detail', {
+    instrument
+  })
 })
 
 // instrument toevoegen
@@ -55,7 +59,9 @@ app.get('/instrument/innemen', (request, response) => {
 
 // instrument uitlenen
 app.get('/instrument/uitlenen', (request, response) => {
-  response.render('instrument-uitlenen')
+  response.render('instrument-detail', {
+    instruments: apiResponseJSON.data
+  })
 })
 
 /*
