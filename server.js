@@ -140,7 +140,7 @@ app.post('/instrument/:id/uitlenen', async function(request, response){
   await fetch(`https://fdnd-agency.directus.app/items/preludefonds_instruments/${id}`, {
     method: 'PATCH',
     body: JSON.stringify({
-    status: 'uitgeleend'
+    status: 'Uitgeleend'
     }),
 
     headers: {
