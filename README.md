@@ -28,6 +28,20 @@ Als gebruiker van de uitleensoftware van preludenfonds wil ik instrumenten op ee
 De uitleentool werkt als een lijst om snel te kunnen zien waar instrumenten zich bevinden, de status en eigenschappen van instrumenten kan aangepast worden en verbonden worden met een naam/contract om snel te kunnen zien bij wie het instrument zich bevind. 
 <!-- Bij Gebruik staat de user story, hoe het werkt en wat je er mee kan. -->
 
+## Ontwerpkeuzes & ideeën
+
+
+Bij het maken van deze website heb ik gewerkt volgens het principe van Progressive Enhancement. Dit betekent dat ik ben begonnen met een simpele basis die altijd werkt, en deze daarna stap voor stap heb uitgebreid.
+Ik ben gestart met alleen HTML, waarbij alle belangrijke functionaliteiten al werken zonder CSS of JavaScript. Denk aan het bekijken van instrumenten en het versturen van een aanvraag via een formulier. Door gebruik te maken van semantische elementen blijft de website duidelijk en bruikbaar in alle situaties.
+
+Daarna heb ik CSS toegevoegd om de website overzichtelijker en gebruiksvriendelijker te maken. De layout is verbeterd en er is visuele hiërarchie aangebracht, zodat het meteen duidelijk is wat belangrijk is. Ook zorgen states zoals hover en focus voor betere feedback bij interactie.
+Als laatste heb ik JavaScript gebruikt voor extra interactie en feedback. Deze laag is niet noodzakelijk voor de core functionaliteit, maar maakt de ervaring wel sneller en prettiger.
+
+Een bewuste keuze is dat formulieren via de server werken (POST requests), zodat alles altijd blijft functioneren zonder afhankelijk te zijn van JavaScript.
+Daarnaast heb ik rekening gehouden met verschillende UI states, zodat het voor de gebruiker altijd duidelijk is wat er gebeurt. Ook is de website mobile-first opgebouwd, waardoor ik vanuit een simpele basis ben gaan uitbreiden.
+
+Door deze aanpak blijft de website altijd werkend, toegankelijk en stap voor stap verbeterd.
+
 ## Kenmerken
 Technieken: liquid, CSS, NodeJS, JS
 De Liquid structuur is zo simpel en overzichtelijk mogelijk gehouden hierin wordt gebruik gemaakt van tags om dynamische data te tonen, de css is uitgebreid en sluit goed aan op de liquid met de juiste class names. Met JS worden routes voor request en responses gemaakt om de database te kunnen updaten. 
